@@ -7,10 +7,8 @@
 
 namespace Drupal\views_vertical_tabs\Plugin\views\style;
 
-use Drupal\Core\Annotation\Translation;
-use Drupal\views\Annotation\ViewsStyle;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\style\StylePluginBase;
-
 
 /**
  * Style plugin to render each item in an ordered or unordered list.
@@ -74,7 +72,7 @@ class VerticalTabs extends StylePluginBase {
   /**
    * {@inheritdoc}
    */
-  public function buildOptionsForm(&$form, &$form_state) {
+  public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
     $options = array('' => t('- None -'));
     $field_labels = $this->displayHandler->getFieldLabels(TRUE);
