@@ -4,6 +4,8 @@
  * @file
  * Views vertical_tabs style plugin code.
  */
+use Drupal\Core\Form\FormState;
+use Drupal\Core\Render\Element\VerticalTabs;
 
 
 /**
@@ -49,12 +51,11 @@ function template_preprocess_views_view_vertical_tabs(&$variables) {
     '#parents' => array('views_vertical_tabs'),
     '#default_tab' => '',
   );
-  $form_state = array(
-    'values' => array(),
-    'groups' => array(),
-  );
-  $element['views_vertical_tabs'] += form_process_vertical_tabs($element['views_vertical_tabs'], $form_state);
-  form_process_group($element['views_vertical_tabs']['group'], $form_state);
+  $form_state = new FormState();
+  $form_state->setValue('groups', array());
+
+  VerticalTabs::processVerticalTabs($element['views_vertical_tabs'], $form_state, $form);
+  VerticalTabs::processGroup($element['views_vertical_tabs']['group'], $form_state, $form);
 
   $default_row_class = isset($options['default_row_class']) ? $options['default_row_class'] : FALSE;
   $row_class_special = isset($options['row_class_special']) ? $options['row_class_special'] : FALSE;
@@ -128,14 +129,8 @@ function template_preprocess_views_view_vertical_tabs(&$variables) {
       ),
     '#parents' => array('row-' . $id),
     );
-    form_process_group($element['row-' . $id], $form_state);
+    VerticalTabs::processGroup($element['row-' . $id], $form_state, $form);
   }
-  $element['views_vertical_tabs']['#attached']['js'] = array(
-    array(
-      'type' => 'setting',
-      'data' => array('views_vertical_tabs' => array($group => $summaries))
-    ),
-  );
 
   $variables['vertical_tabs'] = $element;
 }
