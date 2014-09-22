@@ -20,11 +20,6 @@ function template_preprocess_views_view_vertical_tabs(&$variables) {
   $element['views_vertical_tabs'] = array(
     '#type' => 'vertical_tabs',
     '#title' => t('Views Vertical Tabs'),
-    '#attached' => array(
-      'library' => array(
-        array('views_vertical_tabs', 'drupal.views-vertical-tabs')
-      ),
-    ),
     '#parents' => array('views_vertical_tabs'),
     '#default_tab' => '',
   );
