@@ -1,0 +1,8 @@
+{
+  "name": "drupal/views_vertical_tabs",
+  "description": "Shows views rows as vertical_tabs",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": { }
+}
