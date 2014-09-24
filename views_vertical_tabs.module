@@ -19,7 +19,6 @@ function template_preprocess_views_view_vertical_tabs(&$variables) {
 
   $element['views_vertical_tabs'] = array(
     '#type' => 'vertical_tabs',
-    '#title' => t('Views Vertical Tabs'),
     '#parents' => array('views_vertical_tabs'),
     '#default_tab' => '',
   );
